@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events Monitor</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script>
+      window.__APP_CONFIG__ = {{ .AppConfig }};
+    </script>
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Analytics Service</p>
+        <h1>Лента событий</h1>
+        <p class="subtitle">
+          История подтягивается из <code>GET /v1/events</code>, новые события приходят через websocket и
+          показываются во всплывающем уведомлении.
+        </p>
+      </section>
+
+      <section class="status-grid">
+        <article class="status-card">
+          <span class="status-label">HTTP</span>
+          <strong id="http-status">Загрузка...</strong>
+          <small id="http-endpoint"></small>
+        </article>
+        <article class="status-card">
+          <span class="status-label">WebSocket</span>
+          <strong id="ws-status">Подключение...</strong>
+          <small id="ws-endpoint"></small>
+        </article>
+      </section>
+
+      <section class="events-panel">
+        <div class="events-header">
+          <h2>Последние события</h2>
+          <button id="reload-button" type="button">Обновить</button>
+        </div>
+        <ul id="events-list" class="events-list"></ul>
+      </section>
+    </main>
+
+    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
